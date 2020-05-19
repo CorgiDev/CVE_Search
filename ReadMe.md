@@ -6,7 +6,7 @@ List of pre-requisites for running the program:
 1. Download the allitems.csv file from https://cve.mitre.org/data/downloads/allitems.csv.
    1. If the link does not work, you can go to https://cve.mitre.org/data/downloads/ and just select the **allitems.csv** file listed there.
    ![CVE site screenshot](/ReadMe-Files/00-screencapture.png)
-2. b
+2. Put the file in the root of the project so that it is in the same folder as the **filePrep.py** file.
 3. c
 
 ## How to Launch Project
@@ -29,6 +29,11 @@ Everything below here will be deleted once the project is complete.
 
 ## Possible project ideas
 1. CVE page
+   1. Downloads csv file from external source.
+   2. Reads the file, edits it to prepare to pull it in.
+   3. Converts the edited contents into a dictionary/list.
+   4. Add 3 functions.
+      1. One that edits the file.
 2. b
 3. c
 
@@ -40,10 +45,10 @@ I'll delete this section once I get my project completed.
 Choose a **minimum of 3** of the below features and incorporate into your site
 - [] Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program
 - [] Create a class, then create at least one object of that class and populate it with data
-- [] Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program
+- [x] Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program
 - [] Implement a log that records errors, invalid inputs, or other important events and writes them to a text file
-- [] Read data from an external file, such as text, JSON, CSV, etc and use that data in your application
-- [] Create and call at least 3 functions, at least one of which must return a value that is used
+- [x] Read data from an external file, such as text, JSON, CSV, etc and use that data in your application
+- [x] Create and call at least 3 functions, at least one of which must return a value that is used
 - [] Implement a regular expression (regex) to ensure a field either a phone number or an email address is always stored and displayed in the same format
 - [] Connect to an external/3rd party API and read data into your app
 - [] Create 3 or more unit tests for your application
@@ -57,7 +62,7 @@ Choose a **minimum of 3** of the below features and incorporate into your site
 **ALL** of the below requirements must be met.
 - [] Your code have comments that document major sections of your code to make it easier to read
   - You don’t need to go crazy on this - a few code comments are perfectly fine
-- [] Your project code is uploaded to your GitHub account, in its own repository, **with at least 5 commits**
+- [x] Your project code is uploaded to your GitHub account, in its own repository, **with at least 5 commits**
   - We need to see that you’ve used Git to update your GitHub profile at least 5 times
   - **Using GitHub’s file uploader does not count as a check-in.** You must upload via Git. 
 - [x] It must include a README file located at the top level directory of your project that includes:
