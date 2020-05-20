@@ -11,8 +11,10 @@ List of pre-requisites for running the program:
 
 ## How to Launch Project
 List of steps to run the program:
-1. a
-2. b
+1. Navigate to the root folder of the project. You should see the main.py file.
+2. Run the following command:
+   `C:\Python38\python.exe main.py install`
+   1. There is a change you will have a different version of Python installed. If you go to your C: drive, you should see a folder named `python##`. Just swap out the pound signs (#) for what your folder has at the end.
 3. c
 
 ## Features Used:

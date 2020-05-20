@@ -9,4 +9,4 @@ cve_url='https://cve.mitre.org/data/downloads/allitems.csv'
 dirName = '.'
 fileName = 'allitems.csv'
 
-obtainFile(cve_url, dirName, fileName)
+obtainFile(cve_url, fileName)
