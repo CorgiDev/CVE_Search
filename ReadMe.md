@@ -15,7 +15,9 @@ List of steps to run the program:
 2. Run the following command:
    `C:\Python38\python.exe main.py install`
    1. There is a change you will have a different version of Python installed. If you go to your C: drive, you should see a folder named `python##`. Just swap out the pound signs (#) for what your folder has at the end.
-3. c
+3. Then run the above command again, but without `install`. So the command would be:
+   `C:\Python38\python.exe main.py`
+4. c
 
 ## Features Used:
 - a
