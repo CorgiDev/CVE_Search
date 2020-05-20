@@ -1,10 +1,10 @@
 #import
 import os, shutil, urllib.request
 
+#defined functions
 def filePrep():
     print("Hello")
 
-#defined functions
 def obtainFile(url, dir, fileName):
     if os.path.exists(fileName):
         os.remove(fileName)
