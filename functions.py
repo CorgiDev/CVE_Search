@@ -22,3 +22,5 @@ def downloadFile(url, fileName):
     print(r.status_code)
     print(r.headers['content-type'])
     print(r.encoding)
+
+    # Consider rewatching the string methods video in Python basics
