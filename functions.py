@@ -1,32 +1,49 @@
 #import
-import os, shutil, requests
+import os, shutil, requests, sys
 
+####################
 # Defined Functions
-# Check if folder exist
+####################
 # Download File
+def downloadFile(url, fileName, full_Dir):
+    r = requests.get(url)
+    # Set some diagnostic values
+    statusCode = r.status_code
+    #contentType=r.headers['content-type']
+    #encoding=r.encoding
+    # Begin saving file
+    with open(full_Dir, 'wb') as f:
+        f.write(r.content)
+    # Check if status code error
+    statusCodeCheck(fileName, statusCode)
+
 # Prep file for import
-# Import file to dictionary
-# Search for item in list by CVE label
-# Search for item based on phrase anywhere in the CVE description
 def filePrep():
     print("Hello")
 
-def obtainFile(url, fileName):
-    if os.path.exists(fileName):
-        os.remove(fileName)
-        print("Obtaining updated", fileName)
-        downloadFile(url, fileName)
+# Import file to dictionary
+def fileImport():
+    print("Hello")
+
+# Search for item in list by CVE label
+def searchByCVEName():
+    print("Hello")
+
+# Search for item based on phrase anywhere in the CVE description
+def searchByAny():
+    print("Hello")
+
+# Consider rewatching the string methods video in Python basics
+
+# Check Status Code from HTTP Request
+def statusCodeCheck(fileName, statusCode):
+    if statusCode in range(100, 300):
+        print("Updated", fileName, "downloaded successfully.")
+    elif statusCode in range (300, 400):
+        print("Updated", fileName, "download unsuccessful due to ", statusCode, ": Redirect Error")
+    elif statusCode in range (400, 500):
+        print("Updated", fileName, "download unsuccessful due to ", statusCode, ": Client Error, which is usually due to file not found or access forbidden.")
+    elif statusCode in range (500, 600):
+        print("Updated", fileName, "download unsuccessful due to ", statusCode, ": Server Error, maybe the site is down.")
     else:
-        print("Obtaining updated", fileName)
-        downloadFile(url, fileName)
-
-def downloadFile(url, fileName):
-    r = requests.get(url)
-    with open(fileName, 'wb') as f:
-        f.write(r.content)
-    # Retrieve HTTP meta-data
-    print(r.status_code)
-    print(r.headers['content-type'])
-    print(r.encoding)
-
-    # Consider rewatching the string methods video in Python basics
+        print("Sorry the error is unknown. Try again later.")
