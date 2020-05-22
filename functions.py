@@ -18,8 +18,18 @@ def downloadFile(url, fileName, full_Dir):
     statusCodeCheck(fileName, statusCode)
 
 # Prep file for import
-def filePrep():
-    print("Hello")
+def filePrep(fullFilePath, lines2Remove):
+    # Convert file to list of strings
+    file2Edit = open(fullFilePath,"w")
+    stringList = file2Edit.readlines()
+    file2Edit.close()
+    # Edit list to remove all lines that end with lines2Remove
+    # Convert the list back into a single string
+    file2Edit = open(fullFilePath, "w")
+    newFileContents = "".join(stringList)
+    file2Edit.write(newFileContents)
+    file2Edit.close()
+
 
 # Import file to dictionary
 def fileImport():

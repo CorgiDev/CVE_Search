@@ -1,23 +1,25 @@
 # Project Title
-Brief description here.
+Brief description here. This program pulls down a list of Common Vulnerabilities and Exposures (CVEs) from https://cve.mitre.org/data/downloads/, and then imports it into a dictionary that can be searched.
+![CVE site screenshot](/ReadMe-Files/00-screencapture.png)
 
 ## Pre-requisites
 List of pre-requisites for running the program:
 1. Download the allitems.csv file from https://cve.mitre.org/data/downloads/allitems.csv.
    1. If the link does not work, you can go to https://cve.mitre.org/data/downloads/ and just select the **allitems.csv** file listed there.
-   ![CVE site screenshot](/ReadMe-Files/00-screencapture.png)
+   
 2. Put the file in the root of the project so that it is in the same folder as the **filePrep.py** file.
 3. c
 
 ## How to Launch Project
 List of steps to run the program:
 1. Navigate to the root folder of the project. You should see the main.py file.
-2. Run the following command:
-   `C:\Python38\python.exe main.py install`
+2. Run the following command: </br> `py main.py install`
+   1. If that doesn't work you may need to try: </br> `C:\Python38\python.exe main.py install`
    1. There is a change you will have a different version of Python installed. If you go to your C: drive, you should see a folder named `python##`. Just swap out the pound signs (#) for what your folder has at the end.
-3. Then run the above command again, but without `install`. So the command would be:
-   `C:\Python38\python.exe main.py`
-4. c
+1. Then run the above command again, but without `install`. 
+   1.  So the command would be: </br> `py main.py`
+   2.  Or, as before, if that does not work, you can try: </br> `C:\Python##\python.exe main.py`
+2. c
 
 ## Features Used:
 - a
@@ -26,6 +28,9 @@ List of steps to run the program:
 
 ## Additional Notes
 Additional notes on the project.
+
+## Resources
+- [HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
 ======================================================================
 Everything below here will be deleted once the project is complete.
