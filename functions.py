@@ -1,7 +1,13 @@
 #import
 import os, shutil, requests
 
-#defined functions
+# Defined Functions
+# Check if folder exist
+# Download File
+# Prep file for import
+# Import file to dictionary
+# Search for item in list by CVE label
+# Search for item based on phrase anywhere in the CVE description
 def filePrep():
     print("Hello")
 
