@@ -4,6 +4,14 @@ import os, shutil, requests, sys
 ####################
 # Defined Functions
 ####################
+# Clear directory of a particular file type
+""" def clearDirByFileType(dir, fileTypeExtension):
+    for filename in os.listdir(dir):
+        if filename.endswith(fileTypeExtension):
+            #delFile = (dir,filename)
+            #os.unlink(delFile)
+            print('Deleting ', filename, 'from ', dir) """
+
 # Download File
 def downloadFile(url, fileName, full_Dir):
     r = requests.get(url)
@@ -19,6 +27,7 @@ def downloadFile(url, fileName, full_Dir):
 
 # Prep file for import
 def filePrep(fullFilePath, lines2Remove):
+    #############################################
     # Convert file to list of strings
     file2Edit = open(fullFilePath,"w")
     stringList = file2Edit.readlines()
@@ -30,6 +39,21 @@ def filePrep(fullFilePath, lines2Remove):
     file2Edit.write(newFileContents)
     file2Edit.close()
 
+def filePrep2(dir, fileName, badLineIdentifier):
+    # Variables needed
+    fullFilePath = (dir, fileName)
+    newFileName = (dir,"new",fileName)
+    # Open file to read it
+    a_file = open(fullFilePath, "r")
+    # Create a list of the lines in the file and close the file.
+    lines = a_file.readlines()
+    a_file.close()
+    # Create a new file to write the lines to
+    new_file = open(newFileName, "w")
+    for line in lines:
+        if badLineIdentifier not in line:
+            new_file.write(line)
+    new_file.close()
 
 # Import file to dictionary
 def fileImport():
