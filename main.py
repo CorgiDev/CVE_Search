@@ -3,8 +3,7 @@ import os, shutil
 
 #imported functions
 from functions import downloadFile
-from functions import filePrep
-#from functions import clearDirByFileType
+from functions import fileFormat
 
 #variables
 cve_URL='https://cve.mitre.org/data/downloads/allitems.csv'
@@ -12,8 +11,10 @@ cve_DirName = './CVE_Downloads/'
 cve_Filename = 'allitems.csv'
 cve_FullPath = cve_DirName + cve_Filename
 cve_FileType = '.csv'
-lines2Remove = ",,,,,,"
+lines2Remove = [",,,,,,"]
 
+# Check if the firectory exists. Remove/recreate if it does b4 downloading. 
+# Create and start download if not.
 if os.path.exists(cve_DirName):
     print("Old", cve_Filename, "exists.", "Removing outdated files.")
     shutil.rmtree(cve_DirName)
@@ -24,3 +25,5 @@ else:
     print("No existing", cve_Filename, ". Obtaining file now.")
     os.mkdir(cve_DirName)
     downloadFile(cve_URL, cve_Filename, cve_FullPath)
+
+# fileFormat(cve_DirName, cve_Filename, lines2Remove)

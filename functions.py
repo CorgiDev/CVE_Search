@@ -1,5 +1,5 @@
 #import
-import os, shutil, requests, sys
+import os, shutil, requests, sys, csv
 
 ####################
 # Defined Functions
@@ -18,34 +18,15 @@ def downloadFile(url, fileName, full_Dir):
     statusCodeCheck(fileName, statusCode)
 
 # Prep file for import
-def filePrep(fullFilePath, lines2Remove):
-    #############################################
-    # Convert file to list of strings
-    file2Edit = open(fullFilePath,"w")
-    stringList = file2Edit.readlines()
-    file2Edit.close()
-    # Edit list to remove all lines that end with lines2Remove
-    # Convert the list back into a single string
-    file2Edit = open(fullFilePath, "w")
-    newFileContents = "".join(stringList)
-    file2Edit.write(newFileContents)
-    file2Edit.close()
-
-def filePrep2(dir, fileName, badLineIdentifier):
-    # Variables needed
-    fullFilePath = (dir, fileName)
-    newFileName = (dir,"new",fileName)
-    # Open file to read it
-    a_file = open(fullFilePath, "r")
-    # Create a list of the lines in the file and close the file.
-    lines = a_file.readlines()
-    a_file.close()
-    # Create a new file to write the lines to
-    new_file = open(newFileName, "w")
-    for line in lines:
-        if badLineIdentifier not in line:
-            new_file.write(line)
-    new_file.close()
+def fileFormat(fileDir, filename, badwords):
+    oldFilePath = fileDir + filename
+    newFilePath = fileDir + "New_" + filename
+    # Check if a line in the old file contains an invalid phrase.
+    # If not, add it to a new copy of the file.
+    with open(oldFilePath) as oldfile, open(newFilePath, 'w') as newfile:
+        for line in oldfile:
+            if not any(badword in line for badword in badwords):
+                newfile.write(line)
 
 # Import file to dictionary
 def fileImport():
