@@ -19,7 +19,7 @@ List of steps to run the program:
 1. Then run the above command again, but without `install`. 
    1.  So the command would be: </br> `py main.py`
    2.  Or, as before, if that does not work, you can try: </br> `C:\Python##\python.exe main.py`
-2. c
+2. If the program is run multiple times for different results. If the **CVE_Downloads** folder is present when the program is startedm it will delete it to ensure you get the most updated set of data to search.
 
 ## Features Used:
 - a
@@ -32,9 +32,10 @@ Additional notes on the project.
 ## Resources
 - [HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
-======================================================================
-Everything below here will be deleted once the project is complete.
-======================================================================
+=========================================
+Everything below here will be deleted 
+once the project is complete.
+=========================================
 
 ## Possible project ideas
 1. CVE page

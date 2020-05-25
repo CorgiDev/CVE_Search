@@ -4,14 +4,6 @@ import os, shutil, requests, sys
 ####################
 # Defined Functions
 ####################
-# Clear directory of a particular file type
-""" def clearDirByFileType(dir, fileTypeExtension):
-    for filename in os.listdir(dir):
-        if filename.endswith(fileTypeExtension):
-            #delFile = (dir,filename)
-            #os.unlink(delFile)
-            print('Deleting ', filename, 'from ', dir) """
-
 # Download File
 def downloadFile(url, fileName, full_Dir):
     r = requests.get(url)
