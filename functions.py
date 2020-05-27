@@ -1,21 +1,31 @@
 #import
-import os, shutil, requests, sys, csv
+import os, shutil, requests, sys, csv, pandas as pd
+#, mpu.pd
 
 ####################
 # Defined Functions
 ####################
 # Download File
 def downloadFile(url, fileName, full_Dir):
-    r = requests.get(url)
-    # Set some diagnostic values
-    statusCode = r.status_code
-    #contentType=r.headers['content-type']
-    #encoding=r.encoding
-    # Begin saving file
+    try:
+        r = requests.get(url,timeout=3)
+        r.raise_for_status()
+    except requests.exceptions.HTTPError as errh:
+        print ("Http Error:",errh)
+    except requests.exceptions.ConnectionError as errc:
+        print ("Error Connecting:",errc)
+    except requests.exceptions.Timeout as errt:
+        print ("Timeout Error:",errt)
+    except requests.exceptions.RequestException as err:
+        print ("OOps: Something Else",err)
     with open(full_Dir, 'wb') as f:
         f.write(r.content)
-    # Check if status code error
-    statusCodeCheck(fileName, statusCode)
+    print("Download of", fileName, "successful.")
+"""     try:
+        r = requests.post('somerestapi.com/post-here', data={'birthday': '9/9/3999'})
+        r.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        print (e.response.text) """
 
 # Prep file for import
 def fileFormat(fileDir, filename, badwords):
@@ -29,7 +39,14 @@ def fileFormat(fileDir, filename, badwords):
                 newfile.write(line)
 
 # Import file to dictionary
-def fileImport():
+def fileImport(fileDir, filename):
+    fullFilePath = fileDir + filename
+    with open(fullFilePath, newline='') as f:
+        reader = csv.reader(f)
+        your_list = list(reader)
+    print(your_list)
+
+def csvImport():
     print("Hello")
 
 # Search for item in list by CVE label
@@ -41,16 +58,3 @@ def searchByAny():
     print("Hello")
 
 # Consider rewatching the string methods video in Python basics
-
-# Check Status Code from HTTP Request
-def statusCodeCheck(fileName, statusCode):
-    if statusCode in range(100, 300):
-        print("Updated", fileName, "downloaded successfully.")
-    elif statusCode in range (300, 400):
-        print("Updated", fileName, "download unsuccessful due to ", statusCode, ": Redirect Error")
-    elif statusCode in range (400, 500):
-        print("Updated", fileName, "download unsuccessful due to ", statusCode, ": Client Error, which is usually due to file not found or access forbidden.")
-    elif statusCode in range (500, 600):
-        print("Updated", fileName, "download unsuccessful due to ", statusCode, ": Server Error, maybe the site is down.")
-    else:
-        print("Sorry the error is unknown. Try again later.")
