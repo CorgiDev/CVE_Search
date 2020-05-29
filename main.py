@@ -27,5 +27,11 @@ else:
     os.mkdir(cve_DirName)
     downloadFile(cve_URL, cve_Filename, cve_FullPath)
 
+# Format file for import into list
 # fileFormat(cve_DirName, cve_Filename, lines2Remove)
+
+# Import data into list
 # fileImport(cve_DirName, cve_Filename)
+
+# Search by CVE Number
+# Search by keyword
