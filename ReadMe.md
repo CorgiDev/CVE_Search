@@ -12,12 +12,17 @@ List of steps to run the program:
 1. Open the root folder in VS Code first. It may ask you to set the Python interpreter. Once it does, you can just save the settings.json file that will be edited as a result and then close out VS Code, unless you are using its terminal for the next steps.
 2. Navigate to the root folder of the project in a terminal. 
    1. You should see the main.py file if you use the `ls` command.
-3. Run the following command: </br> `py main.py install`
-   1. If that doesn't work you may need to try: </br> `C:\Python##\python.exe main.py install`
-   2. The `##` needs to be replaced with the numbers matching the Python folder in your C drive. For example, on my C drive, that folder is `Python38` so the path is `C:\Python38\python.exe`.
+3. Run the following command: `py main.py install`
+   1. If that doesn't work you may need to try one of the following variants:
+      1. `python main.py install`
+      2. `C:\Python##\python.exe main.py install`
+   2. The `##` needs to be replaced with the numbers matching the Python folder in your C drive. 
+      1. For example, on my C drive, that folder is `Python38` so the path is `C:\Python38\python.exe`.
 4. Then run the above command again, but without `install`.
-   1.  So the command would be: </br> `py main.py`
-   2.  Or, as before, if that does not work, you can try: </br> `C:\Python##\python.exe main.py`
+   1.  So the command would be: `py main.py`
+   2.  Or, as before, if that does not work, you can try:
+       1.  `python main.py`
+       2.  `C:\Python##\python.exe main.py`
 5. If the program is run multiple times for different results.
    1. If the **CVE_Downloads** folder is present in the project root when the program is started, it will delete it to ensure you get the most updated set of data to search.
    2. If the folder does not exit, it iwll be created and the file downloaded.

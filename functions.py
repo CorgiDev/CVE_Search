@@ -1,10 +1,21 @@
 #import
-import os, shutil, requests, sys, csv, pandas as pd
+import os, shutil, requests, sys, csv
 #, mpu.pd
 
 ####################
 # Defined Functions
 ####################
+# Remove directory
+def removeDirectory(dirName):
+    print("Removing outdated files.")
+    shutil.rmtree(dirName)
+
+# Update search data
+def updateSearchData(dirName, url, fileName, fullPath):
+    print("Obtaining updated vulnerability search data.")
+    os.mkdir(dirName)
+    downloadFile(url, fileName, fullPath)
+
 # Download File
 def downloadFile(url, fileName, full_Dir):
     try:

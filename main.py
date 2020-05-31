@@ -2,9 +2,7 @@
 import os, shutil
 
 #imported functions
-from functions import downloadFile
-from functions import fileFormat
-from functions import fileImport
+from functions import downloadFile, removeDirectory, fileFormat, fileImport, updateSearchData
 
 #variables
 cve_URL='https://cve.mitre.org/data/downloads/allitems.csv'
@@ -14,18 +12,13 @@ cve_FullPath = cve_DirName + cve_Filename
 cve_FileType = '.csv'
 lines2Remove = [",,,,,,"]
 
-# Check if the directory exists. Remove/recreate if it does b4 downloading. 
-# Create and start download if not.
+# Remove outdated search data and update
 if os.path.exists(cve_DirName):
-    print("Old", cve_Filename, "exists.", "Removing outdated files.")
-    shutil.rmtree(cve_DirName)
-    print("Obtaining updated", cve_Filename)
-    os.mkdir(cve_DirName)
-    downloadFile(cve_URL, cve_Filename, cve_FullPath)
+    print("Removing outdated vulnerability search data.")
+    removeDirectory(cve_DirName)
+    updateSearchData(cve_DirName, cve_URL, cve_Filename, cve_FullPath)
 else:
-    print("No existing", cve_Filename, ". Obtaining file now.")
-    os.mkdir(cve_DirName)
-    downloadFile(cve_URL, cve_Filename, cve_FullPath)
+    updateSearchData(cve_DirName, cve_URL, cve_Filename, cve_FullPath)
 
 # Format file for import into list
 # fileFormat(cve_DirName, cve_Filename, lines2Remove)
