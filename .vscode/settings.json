@@ -1,3 +1,13 @@
 {
-    "python.pythonPath": "C:\\Python38\\python.exe"
+    "python.pythonPath": "/usr/local/bin/python3"
 }
+
+// Windows interpreter
+/* {
+    "python.pythonPath": "C:\\Python38\\python.exe"
+} */
+
+// Mac interpreter
+/* {
+    "python.pythonPath": "/usr/local/bin/python3"
+} */
