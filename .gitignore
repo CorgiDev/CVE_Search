@@ -1,5 +1,6 @@
 # Extra custom files to ignore
 *.csv
+CVE_Downloads
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
