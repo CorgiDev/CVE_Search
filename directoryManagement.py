@@ -44,3 +44,14 @@ def downloadFile(url, fileName, full_Dir):
 #         f.write(r.content)
 #     # Check if status code error
 #     statusCodeCheck(fileName, statusCode)
+
+# Delete file
+def deleteFile(fileDir, fileName):
+    fullFilePath = fileDir + fileName
+    os.remove(fullFilePath)
+
+# Rename a file
+def renameFile(fileDir, oldFileName, newFileName):
+    fullOldFileName = fileDir + oldFileName
+    fullNewFileName = fileDir + newFileName
+    os.rename(fullOldFileName, fullNewFileName)
