@@ -2,7 +2,9 @@
 import os, shutil
 
 #imported functions
-from functions import downloadFile, removeDirectory, fileFormat, fileImport, updateSearchData
+from directoryManagement import downloadFile, removeDirectory, updateSearchData
+from filePrep import fileFormat, fileImport
+from vulnSearch import searchByCVEName, searchByAny
 
 #variables
 cve_URL='https://cve.mitre.org/data/downloads/allitems.csv'
@@ -14,7 +16,6 @@ lines2Remove = [",,,,,,"]
 
 # Remove outdated search data and update
 if os.path.exists(cve_DirName):
-    print("Removing outdated vulnerability search data.")
     removeDirectory(cve_DirName)
     updateSearchData(cve_DirName, cve_URL, cve_Filename, cve_FullPath)
 else:
