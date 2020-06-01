@@ -21,8 +21,8 @@ def downloadFile(url, fileName, full_Dir):
         response = requests.get(url,timeout=3) 
         response.raise_for_status()                 # Raise error in case of failure 
         with open(full_Dir, 'wb') as f:
-            f.write(r.content)
-            print("Download of ", fileName, " successful.")
+            f.write(response.content)
+            print("Download of new search data successful.")
     except requests.exceptions.HTTPError as httpErr: 
         print ("Http Error:",httpErr) 
     except requests.exceptions.ConnectionError as connErr: 
@@ -31,9 +31,16 @@ def downloadFile(url, fileName, full_Dir):
         print ("Timeout Error:",timeOutErr) 
     except requests.exceptions.RequestException as reqErr: 
         print ("Something Else:",reqErr)
-    
-"""     try:
-        r = requests.post('somerestapi.com/post-here', data={'birthday': '9/9/3999'})
-        r.raise_for_status()
-    except requests.exceptions.HTTPError as e:
-        print (e.response.text) """
+
+# OLD FUNCTION, JUST PASTED HERE TO HELP ME FIGURE OUT AN ISSUE
+# def downloadFile(url, fileName, full_Dir):
+#     r = requests.get(url)
+#     # Set some diagnostic values
+#     statusCode = r.status_code
+#     #contentType=r.headers['content-type']
+#     #encoding=r.encoding
+#     # Begin saving file
+#     with open(full_Dir, 'wb') as f:
+#         f.write(r.content)
+#     # Check if status code error
+#     statusCodeCheck(fileName, statusCode)
