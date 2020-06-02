@@ -3,7 +3,7 @@ import os, shutil
 
 #imported functions
 from directoryManagement import downloadFile, removeDirectory, updateSearchData
-from filePrep import fileFormat, fileImport
+from filePrep import fileFormat
 from vulnSearch import searchByCVEName, searchByAny
 
 #variables

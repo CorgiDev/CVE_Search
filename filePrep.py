@@ -20,12 +20,12 @@ def fileFormat(fileDir, fileName, badwords):
     print("Search data format complete.")
 
 # Import file to dictionary
-def fileImport(fileDir, filename):
+""" def fileImport(fileDir, filename):
     fullFilePath = fileDir + filename
     with open(fullFilePath, newline='') as f:
         reader = csv.reader(f)
         your_list = list(reader)
-    print(your_list)
+    print(your_list) """
 
 def csvImport():
     print("Hello")
