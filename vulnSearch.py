@@ -12,22 +12,6 @@ import os, shutil, requests, sys, csv
 #       [ ] ii. Else skip the row.
 #
 # ============================================================
-def searchByAny(fileDir, fileName):
-    fullFilePath = fileDir + fileName
-    searchTerm = ''
-    while searchTerm == '':
-        searchTerm = input('What CVE Number do you want to search for? Type "done" if finished. ')
-        # Add a elif or if in here to catch empty inputs and ask them to give input again.
-        if searchTerm.lower() == 'done':
-            break
-        elif len(searchTerm) >= 1:
-            with open(fullFilePath, newline='') as csvfile:
-                vulnReader = csv.DictReader(csvfile, delimiter=',')
-                rows = list(vulnReader)
-                print('')
-                for row in rows:
-                    print(row[searchTerm])
-
 def searchByInput(fileDir, fileName):
     searchDataFile = fileDir + fileName
     resultFile = 'results.csv'
