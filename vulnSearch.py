@@ -1,48 +1,58 @@
 #imported modules
 import os, shutil, requests, sys, csv
-# TO DO LIST
-# 1. Ask user for search term
-# 2. If user enters 'done' then end program
-# 3. If user enters nothing, tell them this and request input, remind them that done will exit the app
-# 4. If user enters something, search for it in the csv.
-#    a. If result found, add each result to a list
-#
-# Search for item based on phrase anywhere in the CVE description
-""" def searchByAny(fileDir, fileName):
-    fullFilePath = fileDir + fileName
-    #input number you want to search
-    searchTerm = input('Enter term you want to search for: ')
-    #read csv, and split on "," the line
-    csv_file = csv.reader(open(fullFilePath, "rb"), delimiter=",")
-    #loop through csv list
-    for row in csv_file:
-        #if current rows 2nd value is equal to input, print that row
-        if searchTerm in row:
-            print(row) """
 
+# TO DO LIST (Will remove once done.)
+# [x] 1. Ask user for search input
+# [x] 2. If user enters 'done' then end program
+# [ ] 3. If user enters nothing, tell them no input was received and prompt for input. Remind them that done will exit the app.
+# [ ] 4. If user enters something: 
+#    [x] a. Print the header row to the new result file.
+#    [ ] b. Search for user input in the csv.
+#       [ ] i. If search input found in current row, add row to the new result file.
+#       [ ] ii. Else skip the row.
+#
 # ============================================================
 def searchByAny(fileDir, fileName):
     fullFilePath = fileDir + fileName
     searchTerm = ''
     while searchTerm == '':
-        searchTerm = input('What CVE Number do you want to search for? Type "done" if finished.')
+        searchTerm = input('What CVE Number do you want to search for? Type "done" if finished. ')
         # Add a elif or if in here to catch empty inputs and ask them to give input again.
         if searchTerm.lower() == 'done':
             break
-        elif searchTerm.len() >= 1:
+        elif len(searchTerm) >= 1:
             with open(fullFilePath, newline='') as csvfile:
                 vulnReader = csv.DictReader(csvfile, delimiter=',')
                 rows = list(vulnReader)
+                print('')
                 for row in rows:
                     print(row[searchTerm])
 
-# Consider rewatching the string methods video in Python basics
-
-""" username = input()
-
-with open('Users.csv', 'rt') as f:
-     reader = csv.reader(f, delimiter=',') # good point by @paco
-     for row in reader:
-          for field in row:
-              if field == username:
-                  print "is in file" """
+def searchByInput(fileDir, fileName):
+    searchDataFile = fileDir + fileName
+    resultFile = 'results.csv'
+    resultFilePath = fileDir + resultFile
+    searchInput = ''
+    while searchInput == '':
+        searchInput = input('What CVE Number do you want to search for? Type "done" if finished. ')
+        # Add a elif or if in here to catch empty inputs and ask them to give input again.
+        if searchInput.lower() == 'done':
+            break
+        elif len(str(searchInput)) >= 1:
+        # Copy needed lines to Results.csv file
+            try:
+                with open(searchDataFile) as searchData, open(resultFilePath, 'w', encoding='utf-8') as newResultFile:
+                    # First write the header row to the result file
+                    i = 0
+                    for line in searchData:
+                        while i == 0:
+                            i += 1
+                            newResultFile.write(line)
+                            
+                    # Then write the results to the result file
+                    """ for line in searchData:
+                        if not any(searchTerms in line for searchTerms in searchInput):
+                            newResultFile.write(line) """
+            except UnicodeDecodeError as err:
+                print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
+    print("Search complete. See results in: " + resultFilePath)

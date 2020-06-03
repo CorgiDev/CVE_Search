@@ -4,7 +4,7 @@ import os, shutil
 #imported functions
 from directoryManagement import downloadFile, removeDirectory, updateSearchData
 from filePrep import fileFormat
-from vulnSearch import searchByAny
+from vulnSearch import searchByAny, searchByInput
 
 #variables
 cve_URL='https://cve.mitre.org/data/downloads/allitems.csv'
@@ -27,7 +27,6 @@ fileFormat(cve_DirName, cve_Filename, lines2Remove)
 # Import data into list
 # fileImport(cve_DirName, cve_Filename)
 
-# Search by CVE Number
-
 # Search by keyword
-searchByAny(cve_DirName, cve_Filename)
+# searchByAny(cve_DirName, cve_Filename)
+searchByInput(cve_DirName, cve_Filename)
