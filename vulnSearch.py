@@ -1,11 +1,12 @@
 #imported modules
 import os, shutil, requests, sys, csv
-
-# Search for item in list by CVE label
-def searchByCVEName():
-    print("Hello")
-
-
+# TO DO LIST
+# 1. Ask user for search term
+# 2. If user enters 'done' then end program
+# 3. If user enters nothing, tell them this and request input, remind them that done will exit the app
+# 4. If user enters something, search for it in the csv.
+#    a. If result found, add each result to a list
+#
 # Search for item based on phrase anywhere in the CVE description
 """ def searchByAny(fileDir, fileName):
     fullFilePath = fileDir + fileName
@@ -25,6 +26,7 @@ def searchByAny(fileDir, fileName):
     searchTerm = ''
     while searchTerm == '':
         searchTerm = input('What CVE Number do you want to search for? Type "done" if finished.')
+        # Add a elif or if in here to catch empty inputs and ask them to give input again.
         if searchTerm.lower() == 'done':
             break
         elif searchTerm.len() >= 1:
