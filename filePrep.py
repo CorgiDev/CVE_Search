@@ -1,8 +1,8 @@
 #imported modules
-import os, shutil, requests, sys, csv
+import os, sys, csv
 from directoryManagement import deleteFile, renameFile
 
-# Prep file for import
+# Prep file for easier reading
 def fileFormat(fileDir, fileName, badwords):
     print("Search data being formatted for import.")
     oldFilePath = fileDir + fileName

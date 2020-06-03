@@ -18,7 +18,7 @@ def searchByInput(fileDir, fileName):
     resultFilePath = fileDir + resultFile
     searchInput = ''
     while searchInput == '':
-        searchInput = input('What CVE Number do you want to search for? Type "done" if finished. ')
+        searchInput = input('Enter term you want to use for search. Type "done" if finished. ')
         # Add a elif or if in here to catch empty inputs and ask them to give input again.
         if searchInput.lower() == 'done':
             break
