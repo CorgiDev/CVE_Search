@@ -15,7 +15,7 @@ def fileFormat(fileDir, fileName, badwords):
                 if not any(badword in line for badword in badwords):
                     newfile.write(line)
     except UnicodeDecodeError as err:
-        print('Weird error, "', err, '" occurred.')
+        print('Decoding error, "', err, '" occurred. You can safely ignore it.')
     # Remove old file
     deleteFile(fileDir, fileName)
     # Rename new file to old filename
