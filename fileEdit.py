@@ -30,6 +30,7 @@ def appendNewRow(fileName, newRow):
         csv_writer = writer(write_obj)
         # Add contents of list as last row in the csv file
         csv_writer.writerow(newRow)
+        fileName.close()
 
 def appendNewRowList(fileName, newRowList):
     # Open file in append mode
@@ -39,3 +40,4 @@ def appendNewRowList(fileName, newRowList):
             csv_writer = writer(write_obj)
             # Add contents of list as last row in the csv file
             csv_writer.writerow(newRow)
+            fileName.close()

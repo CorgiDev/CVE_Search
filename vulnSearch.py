@@ -36,17 +36,22 @@ def searchByInput(fileDir, fileName):
                         while i == 0:
                             i += 1
                             #resultHeader.insert(0, line)
-                            newResultFile.write(line)             
-                # Then write the results to the result file
+                            newResultFile.write(line)
+                    newResultFile.close()
+                    searchDataFile.close()            
+            except UnicodeDecodeError as err:
+                print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
+            
+            # Then write the results to the result file
+            try:
                 with open(searchDataFile) as searchData:
                     searchResults = []
                     csvReader = csv.reader(searchData, delimiter=',')
                     for row in csvReader:
                         for field in row:
-                            #if field.find(searchInput) >= 0:
-                            if field.contains(searchInput):
+                            if field.find(searchInput) >= 0:
                                 searchResults.append(row)
-
+                    searchDataFile.close()
             except UnicodeDecodeError as err:
                 print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
     print("Search complete. See results in: " + resultFilePath)
