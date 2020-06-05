@@ -1,6 +1,6 @@
 #imported modules
 import os, shutil, requests, sys, csv
-from fileEdit import appendNewRow, appendNewRowList
+from fileEdit import appendNewRow, appendNewRowList, writeHeader
 
 # TO DO LIST (Will remove once done.)
 # [x] 1. Ask user for search input
@@ -28,20 +28,8 @@ def searchByInput(fileDir, fileName):
             break
         elif len(str(searchInput)) >= 1:
         # Copy needed lines to Results.csv file
-            try:
-                with open(searchDataFile) as searchData, open(resultFilePath, 'w', encoding='utf-8') as newResultFile:
-                    # First write the header row to the file
-                    i = 0
-                    for line in searchData:
-                        while i == 0:
-                            i += 1
-                            #resultHeader.insert(0, line)
-                            newResultFile.write(line)
-                    newResultFile.close()
-                    searchDataFile.close()            
-            except UnicodeDecodeError as err:
-                print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
-            
+            # First write the header row to the file
+            writeHeader(searchDataFile, resultFilePath)
             # Then write the results to the result file
             try:
                 with open(searchDataFile) as searchData:
@@ -49,9 +37,13 @@ def searchByInput(fileDir, fileName):
                     csvReader = csv.reader(searchData, delimiter=',')
                     for row in csvReader:
                         for field in row:
-                            if field.find(searchInput) >= 0:
+                            fieldSearch = field.upper()
+                            search = searchInput.upper()
+                            if fieldSearch.find(search) >= 0:
                                 searchResults.append(row)
+                                appendNewRow(resultFilePath, row)
                     searchDataFile.close()
             except UnicodeDecodeError as err:
                 print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
     print("Search complete. See results in: " + resultFilePath)
+    

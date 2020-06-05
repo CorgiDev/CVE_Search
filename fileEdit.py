@@ -30,7 +30,6 @@ def appendNewRow(fileName, newRow):
         csv_writer = writer(write_obj)
         # Add contents of list as last row in the csv file
         csv_writer.writerow(newRow)
-        fileName.close()
 
 def appendNewRowList(fileName, newRowList):
     # Open file in append mode
@@ -40,4 +39,16 @@ def appendNewRowList(fileName, newRowList):
             csv_writer = writer(write_obj)
             # Add contents of list as last row in the csv file
             csv_writer.writerow(newRow)
-            fileName.close()
+
+def writeHeader(sourceFile, destinationFile):
+    try:
+        with open(sourceFile) as searchData, open(destinationFile, 'w', encoding='utf-8') as newResultFile:
+                    i = 0
+                    for line in searchData:
+                        while i == 0:
+                            i += 1
+                            newResultFile.write(line)
+                    newResultFile.close()
+                    sourceFile.close()            
+    except UnicodeDecodeError as err:
+                print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
