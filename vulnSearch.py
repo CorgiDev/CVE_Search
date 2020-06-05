@@ -1,5 +1,6 @@
 #imported modules
 import os, shutil, requests, sys, csv
+from fileEdit import appendNewRow, appendNewRowList
 
 # TO DO LIST (Will remove once done.)
 # [x] 1. Ask user for search input
@@ -28,19 +29,24 @@ def searchByInput(fileDir, fileName):
         elif len(str(searchInput)) >= 1:
         # Copy needed lines to Results.csv file
             try:
-                with open(searchDataFile, 'rt') as searchData, open(resultFilePath, 'w', encoding='utf-8') as newResultFile:
-                    # First write the header row to the result file
+                with open(searchDataFile) as searchData, open(resultFilePath, 'w', encoding='utf-8') as newResultFile:
+                    # First write the header row to the file
                     i = 0
                     for line in searchData:
                         while i == 0:
                             i += 1
-                            newResultFile.write(line)          
+                            #resultHeader.insert(0, line)
+                            newResultFile.write(line)             
                 # Then write the results to the result file
+                with open(searchDataFile) as searchData:
+                    searchResults = []
                     csvReader = csv.reader(searchData, delimiter=',')
                     for row in csvReader:
                         for field in row:
-                            if field.find(searchInput) != -1:
-                                newResultFile.write(row)
+                            #if field.find(searchInput) >= 0:
+                            if field.contains(searchInput):
+                                searchResults.append(row)
+
             except UnicodeDecodeError as err:
                 print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
     print("Search complete. See results in: " + resultFilePath)
