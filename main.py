@@ -3,7 +3,7 @@ import os, shutil
 
 #imported functions
 from directoryManagement import removeDirectory
-from filePrep import fileFormat
+from fileEdit import fileFormat
 from vulnSearch import searchByInput
 from dataRefresh import updateSearchData
 

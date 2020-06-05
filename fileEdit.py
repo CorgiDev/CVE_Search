@@ -1,5 +1,6 @@
 #imported modules
 import os, sys, csv
+from csv import writer
 from directoryManagement import deleteFile, renameFile
 
 # Prep file for easier reading
@@ -21,3 +22,20 @@ def fileFormat(fileDir, fileName, badwords):
     # Rename new file to old filename
     renameFile(fileDir, newFileName, fileName)
     print("Search data format complete.")
+
+def appendNewRow(fileName, newRow):
+    # Open file in append mode
+    with open(fileName, 'a+', newline='') as write_obj:
+        # Create a writer object from csv module
+        csv_writer = writer(write_obj)
+        # Add contents of list as last row in the csv file
+        csv_writer.writerow(newRow)
+
+def appendNewRowList(fileName, newRowList):
+    # Open file in append mode
+    for newRow in newRowList:
+        with open(fileName, 'a+', newline='') as write_obj:
+            # Create a writer object from csv module
+            csv_writer = writer(write_obj)
+            # Add contents of list as last row in the csv file
+            csv_writer.writerow(newRow)
