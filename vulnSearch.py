@@ -19,7 +19,8 @@ def searchByInput(fileDir, fileName):
     resultFile = 'results.csv'
     resultFilePath = fileDir + resultFile
     searchInput = ''
-    while searchInput == '':
+    searchInProgress = 'yes'
+    while searchInProgress == 'yes':
         searchInput = input('Enter term you want to use for search. Type "done" if finished. ')
         if searchInput.lower() == '':
             print("You didn't enter anything. Please try again.")
@@ -35,6 +36,7 @@ def searchByInput(fileDir, fileName):
                 with open(searchDataFile) as searchData:
                     searchResults = []
                     csvReader = csv.reader(searchData, delimiter=',')
+                    next(csvReader)
                     for row in csvReader:
                         for field in row:
                             fieldSearch = field.upper()
@@ -43,6 +45,7 @@ def searchByInput(fileDir, fileName):
                                 searchResults.append(row)
                                 appendNewRow(resultFilePath, row)
                     searchDataFile.close()
+                    searchInProgress = 'no'
             except UnicodeDecodeError as err:
                 print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
     print("Search complete. See results in: " + resultFilePath)
