@@ -17,6 +17,7 @@ def fileFormat(fileDir, fileName, badwords):
                     newfile.write(line)
     except UnicodeDecodeError as err:
         print('Decoding error, "', err, '" occurred. You can safely ignore it.')
+        pass
     # Remove old file
     deleteFile(fileDir, fileName)
     # Rename new file to old filename
@@ -24,21 +25,29 @@ def fileFormat(fileDir, fileName, badwords):
     print("Search data format complete.")
 
 def appendNewRow(fileName, newRow):
-    # Open file in append mode
-    with open(fileName, 'a+', newline='') as write_obj:
-        # Create a writer object from csv module
-        csv_writer = writer(write_obj)
-        # Add contents of list as last row in the csv file
-        csv_writer.writerow(newRow)
-
-def appendNewRowList(fileName, newRowList):
-    # Open file in append mode
-    for newRow in newRowList:
+    try:
+        # Open file in append mode
         with open(fileName, 'a+', newline='') as write_obj:
             # Create a writer object from csv module
             csv_writer = writer(write_obj)
             # Add contents of list as last row in the csv file
             csv_writer.writerow(newRow)
+    except UnicodeDecodeError as err:
+                print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
+                pass
+
+def appendNewRowList(fileName, newRowList):
+    try:
+        # Open file in append mode
+        for newRow in newRowList:
+            with open(fileName, 'a+', newline='') as write_obj:
+                # Create a writer object from csv module
+                csv_writer = writer(write_obj)
+                # Add contents of list as last row in the csv file
+                csv_writer.writerow(newRow)
+    except UnicodeDecodeError as err:
+                print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
+                pass
 
 def writeHeader(sourceFile, destinationFile):
     try:
@@ -52,3 +61,4 @@ def writeHeader(sourceFile, destinationFile):
                     sourceFile.close()            
     except UnicodeDecodeError as err:
                 print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
+                pass
