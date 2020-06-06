@@ -3,8 +3,8 @@ import os, shutil
 
 #imported functions
 from directoryManagement import removeDirectory
-from fileEdit import fileFormat
-from vulnSearch import searchByInput
+from fileEdit import fileFormat, writeHeader
+from vulnSearch import gatherInput
 from dataRefresh import updateSearchData
 
 #variables
@@ -14,6 +14,7 @@ cve_Filename = 'allitems.csv'
 cve_FullPath = cve_DirName + cve_Filename
 cve_FileType = '.csv'
 lines2Remove = [",,,,,"]
+resultFilePath = cve_DirName + 'results.csv'
 
 # Remove outdated search data and update
 if os.path.exists(cve_DirName):
@@ -24,6 +25,9 @@ else:
 
 # Format file for import into list
 fileFormat(cve_DirName, cve_Filename, lines2Remove)
+# Create the result file
+writeHeader(cve_FullPath, resultFilePath)
 
 # Search by keyword
-searchByInput(cve_DirName, cve_Filename)
+#searchByInput(cve_DirName, cve_Filename)
+gatherInput(cve_DirName, cve_Filename, resultFilePath)
