@@ -59,6 +59,6 @@ def writeHeader(sourceFile, destinationFile):
                             newResultFile.write(line)
                     newResultFile.close()
                     sourceFile.close()            
-    except UnicodeDecodeError as err:
-                print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
+    except UnicodeDecodeError:
+                #print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
                 pass

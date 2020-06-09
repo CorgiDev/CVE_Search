@@ -25,12 +25,13 @@ def gatherInput(fileDir, fileName, resultFilePath):
             break
         elif len(str(searchInput)) >= 1:
             searchByInput(searchDataFile, resultFilePath, searchInput)
+            searchInput = 'done'
     print("Search complete. See results in: " + resultFilePath)
 
 def searchByInput(searchDataFile, resultFilePath, searchInput):
-    searchInput = ''
     # Copy needed lines to Results.csv file
     # IMPORTANT - I need to really make the search skip the header row so I don't end up accidentally writing it to the file again.
+    search = searchInput.upper()
     i = 0
     while i == 0:
         try:
@@ -41,14 +42,13 @@ def searchByInput(searchDataFile, resultFilePath, searchInput):
                 for row in csvReader:
                     for field in row:
                         fieldSearch = field.upper()
-                        search = searchInput.upper()
                         if fieldSearch.find(search) >= 0:
                             searchResults.append(row)
-                            appendNewRow(resultFilePath, searchResults)
+                            appendNewRow(resultFilePath, row)
                 searchDataFile.close()
                 i += 1
-        except UnicodeDecodeError as err:
-            print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
+        except UnicodeDecodeError:
+            #print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
             pass
     print("Search complete. See results in: " + resultFilePath)
     
