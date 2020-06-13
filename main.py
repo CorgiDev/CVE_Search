@@ -17,14 +17,14 @@ cve_FileType = '.csv'
 lines2Remove = [",,,,,"]
 resultFilePath = cve_DirName + 'results.csv'
 
-# Remove outdated search data and update
+# Refresh search data
 if os.path.exists(cve_DirName):
     removeDirectory(cve_DirName)
     updateSearchData(cve_DirName, cve_URL, cve_Filename, cve_FullPath)
 else:
     updateSearchData(cve_DirName, cve_URL, cve_Filename, cve_FullPath)
 
-# Format file for import into list
+# Format csv file for use
 fileFormat(cve_DirName, cve_Filename, lines2Remove)
 # Create the result file
 writeHeader(cve_FullPath, resultFilePath)
