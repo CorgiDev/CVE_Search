@@ -4,7 +4,6 @@ import os, shutil
 #imported functions
 from directoryManagement import removeDirectory
 from fileEdit import fileFormat, writeHeader
-#from csvSearch import gatherInput
 from vulnSearch import searchByInput
 from dataRefresh import updateSearchData
 
