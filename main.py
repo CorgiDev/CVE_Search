@@ -24,9 +24,8 @@ if os.path.exists(cve_DirName):
 else:
     updateSearchData(cve_DirName, cve_URL, cve_Filename, cve_FullPath)
 
-# Format csv file for use
+# Format search data and result csv files for use
 fileFormat(cve_DirName, cve_Filename, lines2Remove)
-# Create the result file
 writeHeader(cve_FullPath, resultFilePath)
 
 # Search by keyword

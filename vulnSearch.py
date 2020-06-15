@@ -1,18 +1,6 @@
 #imported modules
 import os, shutil, requests, sys, csv
-from fileEdit import appendNewRow, appendNewRowList, writeHeader
-
-# TO DO LIST (Will remove once done.)
-# [x] 1. Ask user for search input
-# [x] 2. If user enters 'done' then end program
-# [x] 3. If user enters nothing, tell them no input was received and prompt for input. Remind them that done will exit the app.
-# [ ] 4. If user enters something: 
-#    [x] a. Print the header row to the new result file.
-#    [ ] b. Search for user input in the csv.
-#       [ ] i. If search input found in current row, add row to the new result file after the header row.
-#       [ ] ii. Else skip the row.
-#
-# ============================================================
+from fileEdit import appendNewRow, appendNewRowList, writeHeader, rowCountInt
 
 def searchByInput(searchDataFile, resultFilePath):
     searchInput = ''
@@ -23,6 +11,7 @@ def searchByInput(searchDataFile, resultFilePath):
             print("You didn't enter anything. Please try again.")
             continue
         elif searchInput.lower() == 'done':
+            print("Exiting program.")
             break
         elif len(str(searchInput)) >= 1:
             # Write the results to the result file
@@ -39,8 +28,14 @@ def searchByInput(searchDataFile, resultFilePath):
                             if fieldSearch.find(search) >= 0:
                                 searchResults.append(row)
                                 appendNewRow(resultFilePath, row)
+                resultCountInt = rowCountInt(resultFilePath)
+                resultCount = str(resultCountInt-1)    
+                if resultCountInt >= 2:
+                    print("Search complete. " + resultCount + " results returned. See results in: " + resultFilePath)
+                    searchInProgress = 'no'
+                elif resultCountInt == 1:
+                    print("There were no results for your search. Restart program and try again.")
                     searchInProgress = 'no'
             except UnicodeDecodeError as err:
                 print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
-    print("Search complete. See results in: " + resultFilePath)
     
