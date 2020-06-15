@@ -24,6 +24,7 @@ def gatherInput(fileDir, fileName, resultFilePath):
         elif searchInput.lower() == 'done':
             break
         elif len(str(searchInput)) >= 1:
+            writeHeader(searchDataFile, resultFilePath)
             searchByInput(searchDataFile, resultFilePath, searchInput)
             searchInput = 'done'
     print("Search complete. See results in: " + resultFilePath)
@@ -37,9 +38,10 @@ def searchByInput(searchDataFile, resultFilePath, searchInput):
         try:
             with open(searchDataFile) as searchData:
                 searchResults = []
-                csvReader = csv.reader(searchData, delimiter=',')
-                next(csvReader)
-                for row in csvReader:
+                csvReader = csv.reader(searchData, delimiter=',', encoding='utf-8')
+                #next(csvReader)
+                rows = list(csvReader)
+                for row in rows[1:]:
                     for field in row:
                         fieldSearch = field.upper()
                         if fieldSearch.find(search) >= 0:
@@ -52,3 +54,21 @@ def searchByInput(searchDataFile, resultFilePath, searchInput):
             pass
     print("Search complete. See results in: " + resultFilePath)
     
+def searchFile(searchDataFile, resultFilePath, searchInput):
+    #search = searchInput.upper()
+    i = 1
+    while i == 1:
+        try:
+            with open(searchDataFile, newline='', encoding='utf-8') as csvfile:
+                vulnReader = csv.reader(csvfile, delimiter=',')
+                vulnData = list(vulnReader)
+                for row in vulnData[1:]:
+                    #rowUpper = row.upper()
+                    if row[searchInput]:
+                        print(row)
+                        appendNewRow(resultFilePath, row)
+            searchDataFile.close()
+            i += 1
+        except UnicodeDecodeError:
+            #print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
+            pass

@@ -11,7 +11,7 @@ def fileFormat(fileDir, fileName, badwords):
     newFilePath = fileDir + newFileName
     # Copy needed lines to new file
     try:
-        with open(oldFilePath) as oldfile, open(newFilePath, 'w', encoding='utf-8') as newfile:
+        with open(oldFilePath) as oldfile, open(newFilePath, 'w') as newfile:
             for line in oldfile:
                 if not any(badword in line for badword in badwords):
                     newfile.write(line)
@@ -23,6 +23,18 @@ def fileFormat(fileDir, fileName, badwords):
     # Rename new file to old filename
     renameFile(fileDir, newFileName, fileName)
     print("Search data format complete.")
+
+def writeHeader(sourceFile, destinationFile):
+    try:
+        with open(sourceFile) as searchData, open(destinationFile, 'w', encoding='utf-8') as newResultFile:
+                    i = 0
+                    for line in searchData:
+                        while i == 0:
+                            i += 1
+                            newResultFile.write(line)         
+    except UnicodeDecodeError:
+                #print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
+                pass
 
 def appendNewRow(fileName, newRow):
     try:
@@ -47,18 +59,4 @@ def appendNewRowList(fileName, newRowList):
                 csv_writer.writerow(newRow)
     except UnicodeDecodeError as err:
                 print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
-                pass
-
-def writeHeader(sourceFile, destinationFile):
-    try:
-        with open(sourceFile) as searchData, open(destinationFile, 'w', encoding='utf-8') as newResultFile:
-                    i = 0
-                    for line in searchData:
-                        while i == 0:
-                            i += 1
-                            newResultFile.write(line)
-                    newResultFile.close()
-                    sourceFile.close()            
-    except UnicodeDecodeError:
-                #print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
                 pass

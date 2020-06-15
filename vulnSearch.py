@@ -14,10 +14,7 @@ from fileEdit import appendNewRow, appendNewRowList, writeHeader
 #
 # ============================================================
 
-def searchByInput(fileDir, fileName):
-    searchDataFile = fileDir + fileName
-    resultFile = 'results.csv'
-    resultFilePath = fileDir + resultFile
+def searchByInput(searchDataFile, resultFilePath):
     searchInput = ''
     searchInProgress = 'yes'
     while searchInProgress == 'yes':
@@ -28,23 +25,20 @@ def searchByInput(fileDir, fileName):
         elif searchInput.lower() == 'done':
             break
         elif len(str(searchInput)) >= 1:
-        # Copy needed lines to Results.csv file
-            # First write the header row to the file
-            writeHeader(searchDataFile, resultFilePath)
-            # Then write the results to the result file
+            # Write the results to the result file
             try:
                 with open(searchDataFile) as searchData:
                     searchResults = []
                     csvReader = csv.reader(searchData, delimiter=',')
-                    next(csvReader)
-                    for row in csvReader:
+                    #next(csvReader)
+                    rows = list(csvReader)
+                    for row in rows[1:]:
                         for field in row:
                             fieldSearch = field.upper()
                             search = searchInput.upper()
                             if fieldSearch.find(search) >= 0:
                                 searchResults.append(row)
                                 appendNewRow(resultFilePath, row)
-                    searchDataFile.close()
                     searchInProgress = 'no'
             except UnicodeDecodeError as err:
                 print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')

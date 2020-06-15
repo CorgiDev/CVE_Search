@@ -5,7 +5,9 @@ Brief description here. This program pulls down a list of Common Vulnerabilities
 ## Pre-requisites
 List of pre-requisites for running the program:
 1. Have Python installed. Preferably 3.8.3+.
-2. If running this within VS Code, you will want to
+2. If running this within VS Code, you will want to select the newest Python interpreter possible, and preferably a 64bit version.
+3. You may need to use pip to install some additional modules manually:
+   1. pip install unicodecsv==0.14.1
 
 ## How to Launch Project
 List of steps to run the program:

@@ -4,7 +4,7 @@ import os, shutil
 #imported functions
 from directoryManagement import removeDirectory
 from fileEdit import fileFormat, writeHeader
-from extra import gatherInput
+#from csvSearch import gatherInput
 from vulnSearch import searchByInput
 from dataRefresh import updateSearchData
 
@@ -12,10 +12,11 @@ from dataRefresh import updateSearchData
 cve_URL='https://cve.mitre.org/data/downloads/allitems.csv'
 cve_DirName = './CVE_Downloads/'
 cve_Filename = 'allitems.csv'
+resultFileName = 'results.csv'
 cve_FullPath = cve_DirName + cve_Filename
-cve_FileType = '.csv'
+resultFilePath = cve_DirName + resultFileName
 lines2Remove = [",,,,,"]
-resultFilePath = cve_DirName + 'results.csv'
+cve_FileType = '.csv'
 
 # Refresh search data
 if os.path.exists(cve_DirName):
@@ -30,5 +31,5 @@ fileFormat(cve_DirName, cve_Filename, lines2Remove)
 writeHeader(cve_FullPath, resultFilePath)
 
 # Search by keyword
-#searchByInput(cve_DirName, cve_Filename)
-gatherInput(cve_DirName, cve_Filename, resultFilePath)
+searchByInput(cve_FullPath, resultFilePath)
+#gatherInput(cve_DirName, cve_Filename, resultFilePath)
