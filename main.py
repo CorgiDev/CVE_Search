@@ -32,4 +32,3 @@ writeHeader(cve_FullPath, resultFilePath)
 
 # Search by keyword
 searchByInput(cve_FullPath, resultFilePath)
-#gatherInput(cve_DirName, cve_Filename, resultFilePath)
