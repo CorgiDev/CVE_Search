@@ -5,7 +5,7 @@ from directoryManagement import deleteFile, renameFile
 
 # Prep file for easier reading
 def fileFormat(fileDir, fileName, badwords):
-    print("Search data being formatted for import.")
+    print("Search data being formatted for use. Removing rejected and reserved vuln labels.")
     oldFilePath = fileDir + fileName
     newFileName = "New_" + fileName
     newFilePath = fileDir + newFileName
@@ -15,8 +15,7 @@ def fileFormat(fileDir, fileName, badwords):
             for line in oldfile:
                 if not any(badword in line for badword in badwords):
                     newfile.write(line)
-    except UnicodeDecodeError as err:
-        print('Decoding error, "', err, '" occurred. You can safely ignore it.')
+    except UnicodeDecodeError:
         pass
     # Remove old file
     deleteFile(fileDir, fileName)
@@ -33,8 +32,7 @@ def writeHeader(sourceFile, destinationFile):
                             i += 1
                             newResultFile.write(line)         
     except UnicodeDecodeError:
-                #print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
-                pass
+        pass
 
 def appendNewRow(fileName, newRow):
     try:
@@ -44,9 +42,8 @@ def appendNewRow(fileName, newRow):
             csv_writer = writer(write_obj)
             # Add contents of list as last row in the csv file
             csv_writer.writerow(newRow)
-    except UnicodeDecodeError as err:
-                print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
-                pass
+    except UnicodeDecodeError:
+        pass
 
 def appendNewRowList(fileName, newRowList):
     try:
@@ -57,6 +54,5 @@ def appendNewRowList(fileName, newRowList):
                 csv_writer = writer(write_obj)
                 # Add contents of list as last row in the csv file
                 csv_writer.writerow(newRow)
-    except UnicodeDecodeError as err:
-                print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
-                pass
+    except UnicodeDecodeError:
+        pass

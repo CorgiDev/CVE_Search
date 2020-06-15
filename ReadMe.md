@@ -5,36 +5,41 @@ Brief description here. This program pulls down a list of Common Vulnerabilities
 ## Pre-requisites
 List of pre-requisites for running the program:
 1. Have Python installed. Preferably 3.8.3+.
-2. If running this within VS Code, you will want to select the newest Python interpreter possible, and preferably a 64bit version.
-3. You may need to use pip to install some additional modules manually:
-   1. pip install unicodecsv==0.14.1
+2. If running this within VS Code, you will want to: 
+   1. Select the newest Python interpreter possible, and preferably a 64bit version.
+   2. Install the Python extension authored by Microsoft.
 
 ## How to Launch Project
-List of steps to run the program:
-1. Open the root folder in VS Code first. It may ask you to set the Python interpreter. Once it does, you can just save the settings.json file that will be edited as a result and then close out VS Code, unless you are using its terminal for the next steps.
-2. Navigate to the root folder of the project in a terminal. 
+There are 2 methods to launch the program.
+### If using VS Code
+If you are using VS Code, the steps are a little simplified thanks to the *.vscode* folder. As long as you have set your python interpreter, you should be able to just press *F5* to start debug and it start the *main.py* file automatically.
+
+### Running with Terminal
+If you are using the terminal inside/outside VS Code, you will need to follow the commands below:
+1. Navigate to the root folder of the project in a terminal if not already there.
    1. You should see the main.py file if you use the `ls` command.
-3. Run the following command: `py main.py install`
+2. Run the following command: `py main.py install`
    1. If that doesn't work you may need to try one of the following variants:
       1. `python main.py install`
       2. `C:\Python##\python.exe main.py install`
-   2. The `##` needs to be replaced with the numbers matching the Python folder in your C drive. 
-      1. For example, on my C drive, that folder is `Python38` so the path is `C:\Python38\python.exe`.
-4. Then run the above command again, but without `install`.
-   1.  So the command would be: `py main.py`
-   2.  Or, as before, if that does not work, you can try:
-       1.  `python main.py`
-       2.  `C:\Python##\python.exe main.py`
-5. If the program is run multiple times for different results.
-   1. If the **CVE_Downloads** folder is present in the project root when the program is started, it will delete it to ensure you get the most updated set of data to search.
-   2. If the folder does not exit, it iwll be created and the file downloaded.
+         1. The `##` needs to be replaced with the numbers matching the Python folder in your C drive. 
+         2. For example, on my C drive, that folder is `Python38` so the path is `C:\Python38\python.exe`.
+3. The application should start and run.
+4. After running it with install once, subsequent runs should be able to be done without `install`.
+   1.  In that case, the command would be: `py main.py`
+       1.  Or, as before, if that does not work, you can try:
+           1.  `python main.py`
+           2.  `C:\Python##\python.exe main.py`
 
-## Features:
-
-1. Checks if the folder it needs exists.
+## Features Used:
+1. *Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program*
+2. *Read data from an external file, such as text, JSON, CSV, etc and use that data in your application*
+3. *Create and call at least 3 functions, at least one of which must return a value that is used*
+   1. 
+4. Checks if the *CVE_Downloads* folder it needs exists.
    1. If not it creates it before downloading the file.
    2. If it does, it removes it to get rid of outdated files and recreates it before downloading.
-2. Checks the status code when it attempts the download and displays it to alert if there is an error that could indicate the site being down.
+
 
 ## Additional Notes
 

@@ -14,7 +14,7 @@ cve_Filename = 'allitems.csv'
 resultFileName = 'results.csv'
 cve_FullPath = cve_DirName + cve_Filename
 resultFilePath = cve_DirName + resultFileName
-lines2Remove = [",,,,,"]
+lines2Remove = [",,,,,", "** REJECT **", "** RESERVED **"]
 cve_FileType = '.csv'
 
 # Refresh search data
