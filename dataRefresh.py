@@ -1,13 +1,5 @@
 #imported modules
-import os, shutil, requests, sys, csv
-
-####################
-# Defined Functions
-####################
-# Remove directory
-def removeDirectory(dirName):
-    print("Removing outdated vulnerability search data.")
-    shutil.rmtree(dirName)
+import os, requests
 
 # Update search data
 def updateSearchData(dirName, url, fileName, fullPath):
@@ -31,14 +23,3 @@ def downloadFile(url, fileName, full_Dir):
         print ("Timeout Error:",timeOutErr) 
     except requests.exceptions.RequestException as reqErr: 
         print ("Something Else:",reqErr)
-
-# Delete file
-def deleteFile(fileDir, fileName):
-    fullFilePath = fileDir + fileName
-    os.remove(fullFilePath)
-
-# Rename a file
-def renameFile(fileDir, oldFileName, newFileName):
-    fullOldFileName = fileDir + oldFileName
-    fullNewFileName = fileDir + newFileName
-    os.rename(fullOldFileName, fullNewFileName)

@@ -2,32 +2,32 @@
 import os, shutil
 
 #imported functions
-from directoryManagement import downloadFile, removeDirectory, updateSearchData
-from filePrep import fileFormat
-from vulnSearch import searchByCVEName, searchByAny
+from directoryManagement import removeDirectory
+from fileEdit import fileFormat, writeHeader
+from vulnSearch import searchByInput
+from dataRefresh import updateSearchData
 
 #variables
 cve_URL='https://cve.mitre.org/data/downloads/allitems.csv'
 cve_DirName = './CVE_Downloads/'
 cve_Filename = 'allitems.csv'
+resultFileName = 'results.csv'
 cve_FullPath = cve_DirName + cve_Filename
+resultFilePath = cve_DirName + resultFileName
+lines2Remove = [",,,,,", "** REJECT **", "** RESERVED **"]
 cve_FileType = '.csv'
-lines2Remove = [",,,,,"]
 
-# Remove outdated search data and update
+# Refresh search data
 if os.path.exists(cve_DirName):
     removeDirectory(cve_DirName)
     updateSearchData(cve_DirName, cve_URL, cve_Filename, cve_FullPath)
 else:
     updateSearchData(cve_DirName, cve_URL, cve_Filename, cve_FullPath)
 
-# Format file for import into list
+# Format csv file for use
 fileFormat(cve_DirName, cve_Filename, lines2Remove)
-
-# Import data into list
-# fileImport(cve_DirName, cve_Filename)
-
-# Search by CVE Number
+# Create the result file
+writeHeader(cve_FullPath, resultFilePath)
 
 # Search by keyword
-searchByAny(cve_DirName, cve_Filename)
+searchByInput(cve_FullPath, resultFilePath)

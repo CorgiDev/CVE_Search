@@ -1,46 +1,46 @@
 #imported modules
 import os, shutil, requests, sys, csv
+from fileEdit import appendNewRow, appendNewRowList, writeHeader
 
-# Search for item in list by CVE label
-def searchByCVEName():
-    print("Hello")
-
-
-# Search for item based on phrase anywhere in the CVE description
-""" def searchByAny(fileDir, fileName):
-    fullFilePath = fileDir + fileName
-    #input number you want to search
-    searchTerm = input('Enter term you want to search for: ')
-    #read csv, and split on "," the line
-    csv_file = csv.reader(open(fullFilePath, "rb"), delimiter=",")
-    #loop through csv list
-    for row in csv_file:
-        #if current rows 2nd value is equal to input, print that row
-        if searchTerm in row:
-            print(row) """
-
+# TO DO LIST (Will remove once done.)
+# [x] 1. Ask user for search input
+# [x] 2. If user enters 'done' then end program
+# [x] 3. If user enters nothing, tell them no input was received and prompt for input. Remind them that done will exit the app.
+# [ ] 4. If user enters something: 
+#    [x] a. Print the header row to the new result file.
+#    [ ] b. Search for user input in the csv.
+#       [ ] i. If search input found in current row, add row to the new result file after the header row.
+#       [ ] ii. Else skip the row.
+#
 # ============================================================
-def searchByAny(fileDir, fileName):
-    fullFilePath = fileDir + fileName
-    searchTerm = ''
-    while searchTerm == '':
-        searchTerm = input('What CVE Number do you want to search for? Type "done" if finished.')
-        if searchTerm.lower() == 'done':
+
+def searchByInput(searchDataFile, resultFilePath):
+    searchInput = ''
+    searchInProgress = 'yes'
+    while searchInProgress == 'yes':
+        searchInput = input('Enter the CVE (CVE-####-####) you want to search for. You do not have to type the full label. For instance, you could search for "CVE-2014", "2014", or "CVE-2014-0178". Type "done" if finished. ')
+        if searchInput.lower() == '':
+            print("You didn't enter anything. Please try again.")
+            continue
+        elif searchInput.lower() == 'done':
             break
-        elif searchTerm.len() >= 1:
-            with open(fullFilePath, newline='') as csvfile:
-                vulnReader = csv.DictReader(csvfile, delimiter=',')
-                rows = list(vulnReader)
-                for row in rows:
-                    print(row[searchTerm])
-
-# Consider rewatching the string methods video in Python basics
-
-""" username = input()
-
-with open('Users.csv', 'rt') as f:
-     reader = csv.reader(f, delimiter=',') # good point by @paco
-     for row in reader:
-          for field in row:
-              if field == username:
-                  print "is in file" """
+        elif len(str(searchInput)) >= 1:
+            # Write the results to the result file
+            try:
+                with open(searchDataFile) as searchData:
+                    searchResults = []
+                    csvReader = csv.reader(searchData, delimiter=',')
+                    #next(csvReader)
+                    rows = list(csvReader)
+                    for row in rows[1:]:
+                        for field in row[:1]:
+                            fieldSearch = field.upper()
+                            search = searchInput.upper()
+                            if fieldSearch.find(search) >= 0:
+                                searchResults.append(row)
+                                appendNewRow(resultFilePath, row)
+                    searchInProgress = 'no'
+            except UnicodeDecodeError as err:
+                print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
+    print("Search complete. See results in: " + resultFilePath)
+    
