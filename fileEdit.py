@@ -56,3 +56,10 @@ def appendNewRowList(fileName, newRowList):
                 csv_writer.writerow(newRow)
     except UnicodeDecodeError:
         pass
+
+def rowCountInt(filePath):
+    file = open(filePath)
+    reader = csv.reader(file)
+    lines= len(list(reader))
+    print(lines)
+    return lines
