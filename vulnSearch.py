@@ -18,7 +18,7 @@ def searchByInput(searchDataFile, resultFilePath):
     searchInput = ''
     searchInProgress = 'yes'
     while searchInProgress == 'yes':
-        searchInput = input('Enter term you want to use for search. Type "done" if finished. ')
+        searchInput = input('Enter the CVE (CVE-####-####) you want to search for. You do not have to type the full label. For instance, you could search for "CVE-2014", "2014", or "CVE-2014-0178". Type "done" if finished. ')
         if searchInput.lower() == '':
             print("You didn't enter anything. Please try again.")
             continue
@@ -33,7 +33,7 @@ def searchByInput(searchDataFile, resultFilePath):
                     #next(csvReader)
                     rows = list(csvReader)
                     for row in rows[1:]:
-                        for field in row:
+                        for field in row[:1]:
                             fieldSearch = field.upper()
                             search = searchInput.upper()
                             if fieldSearch.find(search) >= 0:
