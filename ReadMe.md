@@ -52,11 +52,3 @@ The primary purpose of this section is to list optional requirements that were m
 4. *Analyze text and display information about it (ex: how many words in a paragraph)*
    1. I analyze the search data downloaded, once I have formatted it, to display how many search records are available to be searched.
    2. Once the results have been returned I display how many results were found, and let the user no if no results were found.
-
-## Additional Notes
-
-Additional notes on the project.
-
-## Resources
-
-- [HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
