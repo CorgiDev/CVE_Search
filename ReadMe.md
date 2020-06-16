@@ -1,5 +1,5 @@
 # Project Title
-Brief description here. This program pulls down a list of Common Vulnerabilities and Exposures (CVEs) from https://cve.mitre.org/data/downloads/, and then imports it into a dictionary that can be searched.
+This program pulls down a list of Common Vulnerabilities and Exposures (CVEs) from https://cve.mitre.org/data/downloads/, formats the file to remove unneeded data, and then allows the user to search it. Returns the results in a separate CSV file for easier reading.
 ![CVE site screenshot](/ReadMe-Files/00-screencapture.png)
 
 ## Pre-requisites
