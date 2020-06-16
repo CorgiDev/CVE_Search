@@ -16,10 +16,10 @@ If you are using VS Code, the steps are a little simplified thanks to the *.vsco
 
 ### Running with Terminal
 If you are using the terminal inside/outside VS Code, you will need to follow the commands below:
-1. Navigate to the root folder of the project in a terminal if not already there.
-   1. You should see the main.py file if you use the `ls` command.
+1. Navigate to the root folder of the project in a terminal, if not already there.
+   1. You should see the *main.py* file if you use the `ls` command.
 2. Run the following command: `py main.py install`
-   1. If that doesn't work you may need to try one of the following variants:
+   1. If that doesn't work, you may need to try one of the following variants:
       1. `python main.py install`
       2. `C:\Python##\python.exe main.py install`
          1. The `##` needs to be replaced with the numbers matching the Python folder in your C drive. 
