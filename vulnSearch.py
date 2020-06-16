@@ -1,6 +1,7 @@
 #imported modules
 import os, shutil, requests, sys, csv
-from fileEdit import appendNewRow, appendNewRowList, writeHeader, rowCountInt
+from fileEdit import appendNewRow, appendNewRowList, writeHeader
+from extras import rowCountInt, formatPercentage
 
 def searchByInput(searchDataFile, resultFilePath):
     searchInput = ''
@@ -15,11 +16,17 @@ def searchByInput(searchDataFile, resultFilePath):
             break
         elif len(str(searchInput)) >= 1:
             # Write the results to the result file
+            totalSearchRecordsInt = ((rowCountInt(searchDataFile))-1)
+            #print(totalSearchRecordsInt)
+            #totalSearchRecords = str(totalSearchRecordsInt)
+            rowsRead = 1
+            percentageSearched = 0
+            oldPercentage = "0%"
+            percentageSearchedStr = "0%"
             try:
                 with open(searchDataFile) as searchData:
                     searchResults = []
                     csvReader = csv.reader(searchData, delimiter=',')
-                    #next(csvReader)
                     rows = list(csvReader)
                     for row in rows[1:]:
                         for field in row[:1]:
@@ -28,6 +35,15 @@ def searchByInput(searchDataFile, resultFilePath):
                             if fieldSearch.find(search) >= 0:
                                 searchResults.append(row)
                                 appendNewRow(resultFilePath, row)
+                        percentageSearched = (rowsRead/totalSearchRecordsInt)
+                        percentageSearchedStr = formatPercentage(percentageSearched)
+                        if oldPercentage != percentageSearchedStr:
+                            print("Search " + percentageSearchedStr +" complete")
+                            oldPercentage = percentageSearchedStr
+                            rowsRead += 1
+                        else:
+                            rowsRead += 1
+                            continue
                 resultCountInt = rowCountInt(resultFilePath)
                 resultCount = str(resultCountInt-1)    
                 if resultCountInt >= 2:
