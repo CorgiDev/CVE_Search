@@ -1,9 +1,6 @@
 #imported modules
 import os, shutil, requests, sys, csv
 
-####################
-# Defined Functions
-####################
 # Remove directory
 def removeDirectory(dirName):
     print("Removing outdated vulnerability search data.")
@@ -34,11 +31,16 @@ def downloadFile(url, fileName, full_Dir):
 
 # Delete file
 def deleteFile(fileDir, fileName):
-    fullFilePath = fileDir + fileName
-    os.remove(fullFilePath)
+    filePath = fullFilePath(fileDir, fileName)
+    os.remove(filePath)
 
 # Rename a file
 def renameFile(fileDir, oldFileName, newFileName):
-    fullOldFileName = fileDir + oldFileName
-    fullNewFileName = fileDir + newFileName
+    fullOldFileName = fullFilePath(fileDir, oldFileName)
+    fullNewFileName = fullFilePath(fileDir, newFileName)
     os.rename(fullOldFileName, fullNewFileName)
+
+# Create a full file path from a dir and file name
+def fullFilePath(fileDir, fileName):
+    fullPath = fileDir + fileName
+    return fullPath
