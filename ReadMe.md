@@ -32,6 +32,7 @@ If you are using the terminal inside/outside VS Code, you will need to follow th
            2.  `C:\Python##\python.exe main.py`
 
 ## Features Used:
+The primary purpose of this section is to list optional requirements that were met when I used this for my Code Louisville project submission during the May 2020 Python course.
 1. *Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program*
    1. A list is used by the csvReader in the *searchByInput* function in *vulnSearch.py* to read through the rows to find results.
    2. A list is used by the *rowCountInt* function in *extras.py* to return the number of rows, which is used by multiple other parts of the program.
