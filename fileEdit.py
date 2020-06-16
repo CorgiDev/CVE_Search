@@ -31,11 +31,11 @@ def fileFormat(fileDir, fileName, badwords):
 def writeHeader(sourceFile, destinationFile):
     try:
         with open(sourceFile) as searchData, open(destinationFile, 'w', encoding='utf-8') as newResultFile:
-                    i = 0
-                    for line in searchData:
-                        while i == 0:
-                            i += 1
-                            newResultFile.write(line)         
+            i = 0
+            for line in searchData:
+                while i == 0:
+                    i += 1
+                    newResultFile.write(line)         
     except UnicodeDecodeError:
         pass
 
