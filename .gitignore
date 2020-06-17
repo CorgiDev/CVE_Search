@@ -1,7 +1,7 @@
 # Extra custom files to ignore
 *.csv
 CVE_Downloads
-settings.json
+.vscode/settings.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
