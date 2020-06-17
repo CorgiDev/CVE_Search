@@ -4,10 +4,15 @@ This program pulls down a list of Common Vulnerabilities and Exposures (CVEs) fr
 
 ## Pre-requisites
 List of pre-requisites for running the program:
-1. Have Python installed. Preferably 3.8.3+.
+1. Have Python installed. Preferably 3.8.3+, and preferably 64 bit.
 2. If running this within VS Code, you will want to: 
    1. Select the newest Python interpreter possible, and preferably a 64bit version.
    2. Install the Python extension authored by Microsoft.
+3. Install any modules that need to be manually installed:
+   1. `python -m pip install upgrade pip`
+      1. Updates the `pip` module management to the newest version. 
+   2. `python -m pip install requests`
+      1. Installs the `requests` module for Python.
 
 ## How to Launch Project
 There are 2 methods to launch the program.
