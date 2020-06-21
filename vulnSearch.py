@@ -7,7 +7,7 @@ def searchByInput(searchDataFile, resultFilePath):
     searchInput = ''
     searchInProgress = 'yes'
     while searchInProgress == 'yes':
-        searchInput = input('Enter the CVE (CVE-####-####) you want to search for. You do not have to type the full label. For instance, you could search for "CVE-2014", "2014", or "CVE-2014-0178". Type "done" if finished. ')
+        searchInput = input('Enter the CVE (CVE-####-####) you want to search for. You do not have to type the full label, but doing so will ensure a more accurate search. Type "done" if finished. ')
         if searchInput.lower() == '':
             print("You didn't enter anything. Please try again.")
             continue
@@ -17,8 +17,6 @@ def searchByInput(searchDataFile, resultFilePath):
         elif len(str(searchInput)) >= 1:
             # Write the results to the result file
             totalSearchRecordsInt = ((rowCountInt(searchDataFile))-1)
-            #print(totalSearchRecordsInt)
-            #totalSearchRecords = str(totalSearchRecordsInt)
             rowsRead = 1
             percentageSearched = 0
             oldPercentage = "0%"
@@ -54,4 +52,3 @@ def searchByInput(searchDataFile, resultFilePath):
                     searchInProgress = 'no'
             except UnicodeDecodeError as err:
                 print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
-    

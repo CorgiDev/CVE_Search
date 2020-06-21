@@ -4,23 +4,18 @@ This program pulls down a list of Common Vulnerabilities and Exposures (CVEs) fr
 
 ## Pre-requisites
 List of pre-requisites for running the program:
-1. Have Python installed. Preferably 3.8.3+, and preferably 64 bit.
-2. If running this within VS Code, you will want to: 
-   1. Select the newest Python interpreter possible, and preferably a 64bit version.
+1. Have Python installed. Preferably 3.8.3+.
+2. A terminal like the one in VS Code, Git Bash, or the MacOSX terminal.
+3. If running this within VS Code, you will want to: 
+   1. Select the newest Python interpreter possible.
    2. Install the Python extension authored by Microsoft.
-3. Install any modules that need to be manually installed:
+4. Install any modules that need to be manually installed:
    1. `python -m pip install upgrade pip`
       1. Updates the `pip` module management to the newest version. 
    2. `python -m pip install requests`
-      1. Installs the `requests` module for Python.
+      1. Installs the `requests` module for Python if it is not already installed.
 
-## How to Launch Project
-There are 2 methods to launch the program.
-### If using VS Code
-If you are using VS Code, the steps are a little simplified thanks to the *.vscode* folder. As long as you have set your python interpreter, you should be able to just press *F5* to start debug and it start the *main.py* file automatically.
-
-### Running with Terminal
-If you are using the terminal inside/outside VS Code, you will need to follow the commands below:
+## Running the program
 1. Navigate to the root folder of the project in a terminal, if not already there.
    1. You should see the *main.py* file if you use the `ls` command.
 2. Run the following command: `py main.py install`
