@@ -1,4 +1,4 @@
-# Project Title
+# CVE Search
 This program pulls down a list of Common Vulnerabilities and Exposures (CVEs) from https://cve.mitre.org/data/downloads/, formats the file to remove unneeded data, and then allows the user to search it. Returns the results in a separate CSV file for easier reading.
 ![CVE site screenshot](/ReadMe-Files/00-screencapture.png)
 
