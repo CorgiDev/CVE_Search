@@ -1,17 +1,23 @@
-#imported modules
-import os, shutil, requests, sys, csv
+# imported modules
+import os
+import shutil
+import requests
+import sys
+import csv
 from fileEdit import appendNewRow, appendNewRowList, writeHeader
 from extras import rowCountInt, formatPercentage
+
 
 def searchByInput(searchDataFile, resultFilePath):
     searchInput = ''
     searchInProgress = 'yes'
     while searchInProgress == 'yes':
-        searchInput = input('Enter the CVE (CVE-####-####) you want to search for. You do not have to type the full label, but doing so will ensure a more accurate search. Type "done" if finished. ')
+        searchInput = input(
+            'Enter the CVE (CVE-####-####) you want to search for. You do not have to type the full label, but doing so will ensure a more accurate search. Type "done" if finished. ')
         if searchInput.lower() == '':
             print("You didn't enter anything. Please try again.")
             continue
-        elif searchInput.lower() == 'done':
+        elif searchInput.lower() in ['done', 'quit']:
             print("Exiting program.")
             break
         elif len(str(searchInput)) >= 1:
@@ -34,21 +40,25 @@ def searchByInput(searchDataFile, resultFilePath):
                                 searchResults.append(row)
                                 appendNewRow(resultFilePath, row)
                         percentageSearched = (rowsRead/totalSearchRecordsInt)
-                        percentageSearchedStr = formatPercentage(percentageSearched)
+                        percentageSearchedStr = formatPercentage(
+                            percentageSearched)
                         if oldPercentage != percentageSearchedStr:
-                            print("Search " + percentageSearchedStr +" complete")
+                            print("Search " + percentageSearchedStr + " complete")
                             oldPercentage = percentageSearchedStr
                             rowsRead += 1
                         else:
                             rowsRead += 1
                             continue
                 resultCountInt = rowCountInt(resultFilePath)
-                resultCount = str(resultCountInt-1)    
+                resultCount = str(resultCountInt-1)
                 if resultCountInt >= 2:
-                    print("Search complete. " + resultCount + " results returned. See results in: " + resultFilePath)
+                    print("Search complete. " + resultCount +
+                          " results returned. See results in: " + resultFilePath)
                     searchInProgress = 'no'
                 elif resultCountInt == 1:
-                    print("There were no results for your search. Restart program and try again.")
+                    print(
+                        "There were no results for your search. Restart program and try again.")
                     searchInProgress = 'no'
             except UnicodeDecodeError as err:
-                print('Weird decode error, "', err, '" occurred. This is a stupid error and safe to ignore.')
+                print('Weird decode error, "', err,
+                      '" occurred. This is a stupid error and safe to ignore.')
