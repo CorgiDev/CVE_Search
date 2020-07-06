@@ -11,8 +11,11 @@ from extras import rowCountInt, formatPercentage
 def searchByInput(searchDataFile, resultFilePath):
     searchInput = ''
     while True:
-        searchInput = input(
-            'Enter the CVE (CVE-####-####) you want to search for. You do not have to type the full label, but doing so will ensure a more accurate search. Type "done" if finished. ')
+        searchInput = input("""
+        Enter the CVE (CVE-####-####) you want to search for.
+        You do not have to type the full label, but doing so will ensure a more accurate search.
+        Type "done" if finished.
+        $ """)
         if searchInput.lower() == '':
             print("You didn't enter anything. Please try again.")
             continue
@@ -54,10 +57,14 @@ def searchByInput(searchDataFile, resultFilePath):
                     print("Search complete. " + resultCount +
                           " results returned. See results in: " + resultFilePath)
                     break
+                # Shawn: Remove break statement above to let user continue searching without closing app
+                # If removed, Unhandled issue found, no methods found to catch duplicate searches, so results.csv will have dupes
                 elif resultCountInt == 1:
+                    # print(
+                    #     "There were no results for your search. Restart program and try again.")
                     print(
-                        "There were no results for your search. Restart program and try again.")
-                    break
+                        f"There were no results for \"{searchInput}\", Please try again.")
+                    # break
             except UnicodeDecodeError as err:
                 print('Weird decode error, "', err,
                       '" occurred. This is a stupid error and safe to ignore.')

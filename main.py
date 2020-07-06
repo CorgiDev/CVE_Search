@@ -23,8 +23,11 @@ if os.path.exists(cve_DirName):
     refreshPrompt = input(
         "Pre-existing data found, would you like to refresh? (this may take a minute to update)\n\tEnter (yes) to refresh, else resume program. $ ")
     if refreshPrompt.lower() == "yes":
+        print("Refreshing Data...")
         removeDirectory(cve_DirName)
         updateSearchData(cve_DirName, cve_URL, cve_Filename, cve_FullPath)
+    else:
+        print("User Denied Refresh")
 else:
     updateSearchData(cve_DirName, cve_URL, cve_Filename, cve_FullPath)
 
