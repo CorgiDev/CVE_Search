@@ -10,8 +10,7 @@ from extras import rowCountInt, formatPercentage
 
 def searchByInput(searchDataFile, resultFilePath):
     searchInput = ''
-    searchInProgress = 'yes'
-    while searchInProgress == 'yes':
+    while True:
         searchInput = input(
             'Enter the CVE (CVE-####-####) you want to search for. You do not have to type the full label, but doing so will ensure a more accurate search. Type "done" if finished. ')
         if searchInput.lower() == '':
@@ -54,11 +53,11 @@ def searchByInput(searchDataFile, resultFilePath):
                 if resultCountInt >= 2:
                     print("Search complete. " + resultCount +
                           " results returned. See results in: " + resultFilePath)
-                    searchInProgress = 'no'
+                    break
                 elif resultCountInt == 1:
                     print(
                         "There were no results for your search. Restart program and try again.")
-                    searchInProgress = 'no'
+                    break
             except UnicodeDecodeError as err:
                 print('Weird decode error, "', err,
                       '" occurred. This is a stupid error and safe to ignore.')
