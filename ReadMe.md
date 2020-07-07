@@ -37,18 +37,29 @@ The primary purpose of this section is to list optional requirements that were m
    1. A list is used by the csvReader in the *searchByInput* function in *vulnSearch.py* to read through the rows to find results.
    2. A list is used by the *rowCountInt* function in *extras.py* to return the number of rows, which is used by multiple other parts of the program.
 2. *Read data from an external file, such as text, JSON, CSV, etc and use that data in your application*
-   1. Downloads the CVE data file in CSV format.
-   2. Edits it to get rid of some comment lines to avoid reading issues.
-   3. Removes unnecessary rejected or reserved vuln labels.
-      1. Reserved labels are ones that don't actually have a vuln attached to them yet.
-      2. Rejected are ones that are not counted as vulns anymore. Could be in future, but this is part of why the file refreshes each time the program is run.
+   1. This occurs in *dataRefresh.py*, *fileEdit.py*, and *vulnSearch.py*.
+      1. *dataRefresh.py* is where the new list is downloaded.
+      2. *fileEdit.py* is where the file format is completed.
+      3. *vulnSearch.py* is where data from the downloaded csv is read and searched through.
+         1. May eventually add a part to make it go back through the loop in the event that no results are found.
+   2. The steps the process follows are:
+      1. Downloads the CVE data file in CSV format.
+      2. Edits it to get rid of some comment lines to avoid reading issues.
+      3. Removes unnecessary rejected or reserved vuln labels.
+         1. Reserved labels are ones that don't actually have a vuln attached to them yet.
+         2. Rejected are ones that are not counted as vulns anymore. Could be in future, but this is part of why the file refreshes each time the program is run.
 3. *Create and call at least 3 functions, at least one of which must return a value that is used*
-   1. SOOOOO many functions everywhere.
+   1. **SOOOOO** many functions everywhere.
    2. Multiple ones return values used to display: 
       1. Percentage search complete
+         1. Relies on the functions in *extras.py* to get some of the numbers.
+         2. These percentages are then read back within the *searchByInput* function in *vulnSearch.py*.
       2. Number of records obtained from download after format
+         1. Uses *extras.py* and *fileEdit.py*.
       3. Number of search results returned from search
-      4. Updated file paths
+         1. Relies on the functions in *extras.py* to get some of the numbers.
+      4. Updated file paths 
+         1. Basically just about every function does this at some point.
 4. *Analyze text and display information about it (ex: how many words in a paragraph)*
    1. I analyze the search data downloaded, once I have formatted it, to display how many search records are available to be searched.
    2. Once the results have been returned I display how many results were found, and let the user no if no results were found.
