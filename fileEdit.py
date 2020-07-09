@@ -1,10 +1,14 @@
-#imported modules
-import os, sys, csv
+# imported modules
+import os
+import sys
+import csv
 from csv import writer
 from directoryManagement import deleteFile, renameFile, fullFilePath
 from extras import rowCountInt
 
 # Prep file for easier reading
+
+
 def fileFormat(fileDir, fileName, badwords):
     print("Search data being formatted for use. Removing rejected and reserved vuln labels.")
     oldFilePath = fullFilePath(fileDir, fileName)
@@ -26,7 +30,9 @@ def fileFormat(fileDir, fileName, badwords):
     searchRowCount = rowCountInt(oldFilePath)
     searchRecordCountInt = (searchRowCount - 1)
     searchRecordCount = str(searchRecordCountInt)
-    print("Search data format complete. " + searchRecordCount + " records obtained.")
+    print("Search data format complete. " +
+          searchRecordCount + " records obtained.")
+
 
 def writeHeader(sourceFile, destinationFile):
     try:
@@ -35,9 +41,10 @@ def writeHeader(sourceFile, destinationFile):
             for line in searchData:
                 while i == 0:
                     i += 1
-                    newResultFile.write(line)         
+                    newResultFile.write(line)
     except UnicodeDecodeError:
         pass
+
 
 def appendNewRow(fileName, newRow):
     try:
@@ -49,6 +56,7 @@ def appendNewRow(fileName, newRow):
             csv_writer.writerow(newRow)
     except UnicodeDecodeError:
         pass
+
 
 def appendNewRowList(fileName, newRowList):
     try:

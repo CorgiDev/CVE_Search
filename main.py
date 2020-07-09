@@ -1,14 +1,15 @@
-#imported modules
-import os, shutil
+# imported modules
+import os
+import shutil
 
-#imported functions
+# imported functions
 from directoryManagement import removeDirectory
 from fileEdit import fileFormat, writeHeader
 from vulnSearch import searchByInput
 from dataRefresh import updateSearchData
 
-#variables
-cve_URL='https://cve.mitre.org/data/downloads/allitems.csv'
+# variables
+cve_URL = 'https://cve.mitre.org/data/downloads/allitems.csv'
 cve_DirName = './CVE_Downloads/'
 cve_Filename = 'allitems.csv'
 resultFileName = 'results.csv'
@@ -19,8 +20,14 @@ cve_FileType = '.csv'
 
 # Refresh search data
 if os.path.exists(cve_DirName):
-    removeDirectory(cve_DirName)
-    updateSearchData(cve_DirName, cve_URL, cve_Filename, cve_FullPath)
+    refreshPrompt = input(
+        "Pre-existing data found, would you like to refresh? (this may take a minute to update)\n\tEnter (yes) to refresh, else resume program. $ ")
+    if refreshPrompt.lower() == "yes":
+        print("Refreshing Data...")
+        removeDirectory(cve_DirName)
+        updateSearchData(cve_DirName, cve_URL, cve_Filename, cve_FullPath)
+    else:
+        print("User Denied Refresh")
 else:
     updateSearchData(cve_DirName, cve_URL, cve_Filename, cve_FullPath)
 
