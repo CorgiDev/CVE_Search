@@ -12,8 +12,10 @@ List of pre-requisites for running the program:
 4. Install any modules that need to be manually installed:
    1. `python -m pip install upgrade pip`
       1. Updates the `pip` module management to the newest version. 
+      2. Not necessarily required.
    2. `python -m pip install requests`
       1. Installs the `requests` module for Python if it is not already installed.
+      2. Definitely required.
 
 ## Running the program
 1. Navigate to the root folder of the project in a terminal, if not already there.
@@ -63,3 +65,6 @@ The primary purpose of this section is to list optional requirements that were m
 4. *Analyze text and display information about it (ex: how many words in a paragraph)*
    1. I analyze the search data downloaded, once I have formatted it, to display how many search records are available to be searched.
    2. Once the results have been returned I display how many results were found, and let the user no if no results were found.
+   
+## Additional Notes
+This was tested on Windows OS only. It should also run on Mac OSX, but commands may differ slightly.
